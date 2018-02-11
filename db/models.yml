@@ -3,7 +3,17 @@
 # specification to your development database.
 #
 # Indent consistently!  Follow the syntax carefully!
-#
+
+Vinyl
+  title: text
+  runtime: integer
+  year: integer
+  image_url: text
+  artist_id: integer  #foreign key
+
+Artist
+  name: text
+
 # Example:
 #
 # Book

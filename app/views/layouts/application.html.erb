@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Change This Title</title>
+    <title>The Vinyl Countdown</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -10,16 +10,47 @@
     <%= javascript_include_tag 'application' %>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
   </head>
 
   <body>
+<!--     <nav class="navbar navbar-inverse">
+ -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+
+        <div class="navbar-header">
+
+           <!-- Navbar Brand: Logo or Brand Name -->
+          <a class="navbar-brand" href="/">The Vinyl Countdown</a>
+           <!-- Toggle Button -->         
+          <button type="button" class="navbar-toggler collapsed " data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> 
+        </div>
+
+      <!-- Navbar Menu -->
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="mr-auto navbar-nav mt-2 mt-md-0">
+            <li class="nav-item" class="active"><a class="nav-link" href="#">Vinyls</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Artists</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Actors</a></li>
+            </li>
+          </ul>
+        </div>
+
+    </nav>
+
+
     <div class="container-fluid">
 
       <%= yield %>
 
     </div>
+
+   
   </body>
 </html>

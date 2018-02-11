@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+@import url('https://fonts.googleapis.com/css?family=Coiny');
+@import url('https://fonts.googleapis.com/css?family=Concert+One');
+@import url('https://fonts.googleapis.com/css?family=Bubblegum+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans');
+
+
+/*@import url('https://fonts.googleapis.com/css?family=Sigmar+One');
+*/
+
+
+h1 {
+	font-family: "Monoton";
+}
+
+body {
+	font-family: "Roboto";
+}

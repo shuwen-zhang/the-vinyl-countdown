@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+
+<% vinyl = Vinyl.find_by(id: params["id"]) %>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Vinyls</h1>
+
+    <h2><%= vinyl.title %> (<%= vinyl.year %>)</h2>
+    <% if vinyl.artist.present? %>
+      <h3 class="text-muted">Recorded By <%= vinyl.artist.name %></h3>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-sm-6">
+    <%= image_tag vinyl.image_url, :class => "img-fluid" %>
+  </div>
+  <div class="col-sm-6">
+    <% if vinyl.artist.present? %>
+      <p>Recordings by this artist:</p>
+
+      <ul>
+        <% vinyl.artist.vinyls.each do |vinyl| %>
+          <li><%= link_to vinyl.title, "/vinyl/#{vinyl.id}" %></li>
+        <% end %>
+      </ul>
+
+    <% end %>
+  </div>
+</div>

@@ -12,15 +12,21 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "books", force: :cascade do |t|
-    t.text "title"
-    t.integer "author_id"
-    t.text "summary"
-    t.integer "price"
-    t.boolean "hardcover", default: false
+  create_table "artists", force: :cascade do |t|
+    t.text "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "vinyls", force: :cascade do |t|
+    t.text "title"
+    t.integer "runtime"
+    t.integer "year"
+    t.text "image_url"
+    t.integer "artist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["artist_id"], name: "index_vinyls_on_artist_id"
   end
 
 end

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Bubblegum+Sans');
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+@import url('https://fonts.googleapis.com/css?family=Coiny');
+@import url('https://fonts.googleapis.com/css?family=Concert+One');
+
+/*@import url('https://fonts.googleapis.com/css?family=Sigmar+One');
+*/
+
+.navbar-brand {
+	font-family: "Monoton";
+}
+
+.nav-link {
+	font-family: "Roboto";	/*Concert One*/
+}
+
+h1 {
+	font-family: "Monoton";
+}
+
+body {
+	font-family: "Roboto";
+}
+
+/* Rendering album art */
+.circular_image {
+	border-radius: 50%;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: #343a40;
+	pointer-events: none;	/*make image underneath clickable*/
+}
+
+.album_container {
+	position: relative;
+}
+
+.album_container:hover .overlay {
+	opacity: 0.8;
+	border-radius: 50%;
+}
+
+.album_title {
+	color: white;
+  	font-size: 20px;
+  	font-family: "Concert One";
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	-ms-transform: translate(-50%, -50%);
+}
