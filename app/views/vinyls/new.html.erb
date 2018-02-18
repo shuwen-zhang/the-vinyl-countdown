@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+
+<br>
+<h1 class="text-center">Vinyls</h1>
+
+<div class="container">
+  <h3 class="text-center">Add a Vinyl</h3>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 centered">
+
+    <%= form_tag "/vinyls" do %>  <!-- post to vinyls, call create -->
+
+      <p>Title: <span class="required">*</span> 
+        <input name="title" type="text" autofocus class="form-control" required></p>
+      <p>Year: <span class="required">*</span> 
+        <input name="year" type="number" class="form-control" min="1800" max=<%= Date.today.year %> step="1"
+        required></p> <!-- validate that it's 4 digits between 1800 and current year -->
+      <p>Runtime (minutes): <input name="runtime" type="number" class="form-control" min="1" max="500" step="1"></p>
+      <p>Album Art:
+        <input name="image_url" type="text" class="form-control"></p>
+
+      <p>Artist: <span class="required">*</span> <br>
+        <!-- search form function, if not exist, add -->
+          <select name="artist_id" class="form-control" required>
+            <option value="" disabled selected>Select an Artist</option>
+            <% Artist.order('name').each do |artist| %>
+              <option value="<%= artist.id %>">
+                <%= artist.name %>
+              </option>
+            <% end %>
+          </select>
+      </p>
+      <button class="btn btn-secondary btn-block">Add Vinyl</button>
+      <%= link_to "Cancel", "/vinyls", class: 'btn btn-secondary btn-block' %>
+
+    <% end %>
+
+  </div>
+</div>
+</div>
+
+

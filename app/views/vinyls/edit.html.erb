@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+<% vinyl = Vinyl.find_by(id: params["id"]) %>
+
+<br>
+<h1 class="text-center">Vinyls</h1>
+
+<div class="container">
+  <h3 class="text-center">Update <br><i>'<%= vinyl.title %>'</i></h3>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 centered">
+
+    <%= form_tag "/vinyls/#{vinyl.id}", method: "patch" do %>  
+
+      <p>Title: <input name="title" type="text" autofocus class="form-control" value="<%= vinyl.title %>"></p>
+      <p>Year: <input name="year" type="number" class="form-control" min="1800" max=<%= Date.today.year %> step="1" value="<%= vinyl.year %>"></p> 
+      <p>Runtime (minutes): <input name="runtime" type="number" class="form-control" min="1" max="500" step="1" value="<%= vinyl.runtime %>"></p>
+      <p>Album Art:
+        <input name="image_url" type="text" class="form-control" value="<%= vinyl.image_url %>"></p>
+
+      <p>Artist:<br>
+        <!-- search form function, if not exist, add -->
+          <select name="artist_id" required>
+            <option value="" disabled>Select an Artist</option>
+            <% Artist.order('name').each do |artist| %>
+              <option value="<%= artist.id %>" <%= 'selected' if vinyl.artist_id == artist.id %> >
+                <%= artist.name %>
+              </option>
+            <% end %>
+          </select>
+      </p>
+      <button class="btn btn-secondary btn-block">Update Vinyl</button>
+      <%= link_to "Cancel", "/vinyls", class: 'btn btn-secondary btn-block' %>
+
+    <% end %>
+
+  </div>
+</div>
+</div>
+
+

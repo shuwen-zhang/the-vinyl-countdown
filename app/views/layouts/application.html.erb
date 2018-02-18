@@ -20,9 +20,9 @@
   <body>
 <!--     <nav class="navbar navbar-inverse">
  -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
 
-        <div class="navbar-header">
+         <div class="navbar-header">
 
            <!-- Navbar Brand: Logo or Brand Name -->
           <a class="navbar-brand" href="/">The Vinyl Countdown</a>
@@ -35,12 +35,32 @@
       <!-- Navbar Menu -->
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="mr-auto navbar-nav mt-2 mt-md-0">
-            <li class="nav-item" class="active"><a class="nav-link" href="#">Vinyls</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Artists</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Actors</a></li>
+            <li class="nav-item" class="active"><a class="nav-link" href="/vinyls">Vinyls</a></li>
+            <li class="nav-item"><a class="nav-link" href="/artists">Artists</a></li>
             </li>
           </ul>
         </div>
+
+<!-- Using pills instead?
+         
+         <div class="navbar-header">
+
+          <a class="navbar-brand" href="/">The Vinyl Countdown</a>
+          <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="mr-auto nav nav-pills head-menu mt-2 mt-md-0">  
+            <li class="nav-item"><a class="nav-link active" href="/vinyls" id="vinyls">Vinyls</a></li>
+            <li class="nav-item"><a class="nav-link" href="/artists" id="artists">Artists</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" id="actors">Actors</a></li>                
+            
+            </li>
+          </ul>
+        </div>
+ -->
 
     </nav>
 

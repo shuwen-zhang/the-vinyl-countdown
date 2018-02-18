@@ -86,5 +86,16 @@ vinyls.each do |vinyl_data|
   v.save
 end
 
+
+users = [{"username" => "Tom", "password" => "Jerry"}, {"username" => "Silvester", "password" => "Tweety"}]
+
+users.each do |user|
+  u = User.new
+  u.username = user["username"]
+  u.password = user["password"]
+  u.save
+end
+
+
 print "There are now #{Vinyl.count} vinyls in the database.\n"
 print "There are now #{Artist.count} artists in the database.\n"

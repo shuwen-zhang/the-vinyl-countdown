@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+<% artist = Artist.find_by(id: params["id"]) %>
+
+<br>
+<h1 class="text-center">Artists</h1>
+
+<div class="container">
+  <h3 class="text-center">Update <%= artist.name %></h3>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 centered">
+
+    <%= form_tag "/artists/#{artist.id}", method: "patch" do %>  
+
+      <p>Name: 
+        <input name="name" type="text" autofocus class="form-control" value="<%= artist.name %>">
+    	</p>
+      
+      <button class="btn btn-secondary btn-block">Update Artist</button>
+      <%= link_to "Cancel", "/artists", class: 'btn btn-secondary btn-block' %>
+
+    <% end %>
+
+  </div>
+</div>
+</div>
+
+

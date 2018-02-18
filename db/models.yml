@@ -14,6 +14,30 @@ Vinyl
 Artist
   name: text
 
+Collection
+  name: text
+  user_id: integer  # who collection belongs_to
+
+CollectionRecord    # join table for collection and vinyls
+  collection_id: integer
+  vinyl_id: integer
+
+User
+  #name: text
+  username: text
+  password: text
+  # has many collections
+  # has one wishlist
+
+Rating
+  vinyl_id: integer # rating belongs vinyl_id and user_id
+  user_id: integer  # belongs to user_id
+  star: integer
+  comment: text
+
+
+
+
 # Example:
 #
 # Book

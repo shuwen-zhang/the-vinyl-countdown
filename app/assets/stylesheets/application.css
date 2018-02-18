@@ -22,3 +22,6 @@ body {
 	font-family: Roboto;
 }
 
+.required {
+	color:red;
+}

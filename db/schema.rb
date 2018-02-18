@@ -18,6 +18,41 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
   end
 
+  create_table "collection_records", force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "vinyl_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["collection_id"], name: "index_collection_records_on_collection_id"
+    t.index ["vinyl_id"], name: "index_collection_records_on_vinyl_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.text "name"
+    t.integer "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "vinyl_id"
+    t.integer "user_id"
+    t.text "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "star"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+    t.index ["vinyl_id"], name: "index_ratings_on_vinyl_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.text "username"
+    t.text "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "vinyls", force: :cascade do |t|
     t.text "title"
     t.integer "runtime"

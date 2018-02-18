@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get "/vinyls/:id" => "vinyls#show"
   get "/vinyls/:id/edit" => "vinyls#edit"
-  patch "/vinyls" => "vinyls#update"
+  patch "/vinyls/:id" => "vinyls#update"
   delete "/vinyls/:id" => "vinyls#destroy"
 
   # Resources for Artists
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get "/artists/:id" => "artists#show"
   get "/artists/:id/edit" => "artists#edit"
-  patch "/artists" => "artists#update"
+  patch "/artists/:id" => "artists#update"
   delete "/artists/:id" => "artists#destroy"
 
 end

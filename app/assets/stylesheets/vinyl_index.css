@@ -46,13 +46,13 @@ body {
 }
 
 .album_container:hover .overlay {
-	opacity: 0.8;
+	opacity: 0.85;
 	border-radius: 50%;
 }
 
 .album_title {
 	color: white;
-  	font-size: 20px;
+  	font-size: 25px;
   	font-family: "Concert One";
   	position: absolute;
   	top: 50%;

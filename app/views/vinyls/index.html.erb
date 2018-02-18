@@ -1,18 +1,47 @@
 <%= stylesheet_link_tag 'vinyl_index' %>
 
-<h1>Vinyls</h1>
+<br>
+
+  <% if flash[:error] %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Oh snap! </strong><%= flash[:error] %>
+    </div>
+  <% end %>
+
+  <% if flash[:success] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Groovy! </strong><%= flash[:success] %>
+    </div>
+  <% end %>
+
+<h1 class="text-center">Vinyls</h1>
 
 <div class="row">
 
-  <div class="col-sm-3 my-3">
-    <% #link_to image_tag("add_new.png"), "/movies/new" %>
+  <div class="col-sm-3 my-3 text-center">
+    <div class="album_container">
+        <div class="overlay">
+          <div class="album_title" class="font-italic">ADD NEW VINYL</div>
+        </div>
+
+    <%= link_to image_tag("add_new_vinyl.png", :class => "img-fluid circular_image"), "/vinyls/new" %>
+    </div>
+    <br><p>
+      <%= link_to "+ Add New Vinyl", "/vinyls/new", class: "btn btn-primary"%> 
+    </p>
   </div>
 
   <% Vinyl.all.order('created_at desc').each do |vinyl| %>
 
     <div class="col-sm-3 my-3 text-center">
 
-      <% image_url = (vinyl.image_url.present? ? vinyl.image_url : '/assets/images/na.png') %>
+      <% image_url = (vinyl.image_url.present? ? vinyl.image_url : 'na.png') %>
 
     <div class="album_container">
     	<div class="overlay">
@@ -24,8 +53,12 @@
     		<%= vinyl.artist.name %>
     	</p>
       <p>
-        <%= link_to "[Delete]", "/vinyls/#{vinyl.id}", method: "delete" %>
-        <%= link_to "[Edit]", "/vinyls/#{vinyl.id}/edit" %>
+        <div class="btn btn-outline-secondary btn-sm">
+        <%= link_to "Edit", "/vinyls/#{vinyl.id}/edit" %>
+        </div>
+        <div class="btn btn-outline-danger btn-sm">
+        <%= link_to "Delete", "/vinyls/#{vinyl.id}", method: "delete", data: { confirm: "Are you sure?" } %>
+        </div>
       </p>
     </div>
 
