@@ -2,7 +2,7 @@
 
 ### Purpose of the Web Application
 
-**The Vinyl Countdown** is a vinyl record management system, inspired by Discogs.com. Users can browse vinyls and add them to their collections, of which they can have multiple. Users can also rate or add comments to the vinyl records in their collections. Users can also add add vinyls and artists that don't yet exist in the web application database. For simplicity's sake, this web app assumes that there can be only one release for any album name + artist combination, though of course in reality there may be many different versions and releases of the same record by the same artist.
+**The Vinyl Countdown** is a vinyl record management system, inspired by [Discogs.com](discogs.com). Users can browse vinyls and add them to their collections (of which they can have multiple), rate or add comments to the vinyl records in their collections, and also add add vinyls and artists that don't yet exist in the web application database. For simplicity's sake, this web app assumes that there can be only one release for any album name + artist combination, though of course in reality there may be many different versions and releases of the same record by the same artist.
 
 ### Getting Started
 
@@ -13,7 +13,7 @@
 6. `rails server`.  Puma should start up on port 3000.
 7. Browse to `localhost:3000`.
 
-### Models
+### Models Used by the Web Application
 * User
 * Vinyl
 * Artist
