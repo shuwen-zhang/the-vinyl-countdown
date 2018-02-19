@@ -24,4 +24,14 @@ Rails.application.routes.draw do
   patch "/artists/:id" => "artists#update"
   delete "/artists/:id" => "artists#destroy"
 
+  # Resources for Collections
+  get "/collections" => "collections#index"
+  get "/collections/new" => "collections#new"
+  post "/collections" => "collections#create"
+
+  get "/collections/:id" => "collections#show"
+  get "/collections/:id/edit" => "collections#edit"
+  patch "/collections/:id" => "collections#update"
+  delete "/collections/:id" => "collections#destroy"
+
 end

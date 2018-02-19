@@ -1,0 +1,66 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+
+<br>
+
+  <% if flash[:error] %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Oh snap! </strong><%= flash[:error] %>
+    </div>
+  <% end %>
+
+  <% if flash[:success] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Groovy! </strong><%= flash[:success] %>
+    </div>
+  <% end %>
+
+<h1 class="text-center">Collections</h1>
+
+<div class="container">
+  <div class="row">
+
+  <div class="mx-auto my-3">
+    <%= link_to "+ Add New Collection", "/collections/new", class: 'btn btn-primary' %>
+  </div>
+
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Collection</th>
+        <th>Vinyls</th>
+      </tr>
+    </thead>
+
+    <tbody>  
+      <% Collection.all.order('name').each do |collection| %>
+      <tr>
+        <td><%= link_to collection.name, "/collections/#{collection.id}" %>
+        </td>
+
+        <td><ul>
+          <% collection.vinyls.order('year').first(5).each do |vinyl| %>
+            <li><i><%= vinyl.title %></i> 
+              <% if vinyl.year.present? %>
+                (<%= vinyl.year %>)
+              <% end %>
+            </li>
+          <% end %>
+        </ul></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  </div>
+  
+
+  </div>
+</div>
+

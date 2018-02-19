@@ -31,7 +31,10 @@
             <% end %>
           </select>
       </p>
-      <button class="btn btn-secondary btn-block">Add Vinyl</button>
+      <%= submit_tag "Add Vinyl", :class => "btn btn-secondary btn-block"%>
+      <!-- , data: { confirm: "Please verify that the information is correct."}  -->
+<!-- 
+      <button class="btn btn-secondary btn-block"> Add Vinyl</button> -->
       <%= link_to "Cancel", "/vinyls", class: 'btn btn-secondary btn-block' %>
 
     <% end %>

@@ -56,9 +56,20 @@
         <div class="btn btn-outline-secondary btn-sm">
         <%= link_to "Edit", "/vinyls/#{vinyl.id}/edit" %>
         </div>
+
         <div class="btn btn-outline-danger btn-sm">
         <%= link_to "Delete", "/vinyls/#{vinyl.id}", method: "delete", data: { confirm: "Are you sure?" } %>
         </div>
+
+        <div class="dropdown">
+          <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Add to Collection </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">User's collection1</a>
+            <a class="dropdown-item" href="#">User's collection2</a>
+            </div>
+          </div>
+
+
       </p>
     </div>
 

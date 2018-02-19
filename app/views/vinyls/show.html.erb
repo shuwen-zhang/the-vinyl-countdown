@@ -1,23 +1,51 @@
 <%= stylesheet_link_tag 'vinyl_index' %>
 
-<% vinyl = Vinyl.find_by(id: params["id"]) %>
+<br><% vinyl = Vinyl.find_by(id: params["id"]) %>
+
+<h1 class="text-center">Vinyls</h1>
+
+<br>
 
 <div class="row">
-  <div class="col-sm-6">
-    <h1>Vinyls</h1>
 
-    <h2><%= vinyl.title %> (<%= vinyl.year %>)</h2>
-    <% if vinyl.artist.present? %>
-      <h3 class="text-muted">Recorded By <%= vinyl.artist.name %></h3>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-
-  <div class="col-sm-6">
+  <div class="col-sm-4 offset-sm-1">
     <%= image_tag vinyl.image_url, :class => "img-fluid" %>
   </div>
+
   <div class="col-sm-6">
+    <h2 class="text-center"><%= vinyl.title %></h2>
+    <% if vinyl.artist.present? %>
+      <h3 class="text-muted text-center">
+        <%= link_to vinyl.artist.name, "/artists/#{vinyl.artist.id}" %></h3>
+    <% end %>
+
+
+  <table class="table table-light">
+    <tbody>
+      <tr>
+        <th>Year</th>
+        <td><%= vinyl.year %></td>
+      </tr>
+      <tr>
+        <th>Runtime</th>
+        <td>
+          <% if vinyl.runtime.present? %>
+          <%= "#{vinyl.runtime} min" %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+
+  <div class="col-sm-6 offset-sm-1">
     <% if vinyl.artist.present? %>
       <p>Recordings by this artist:</p>
 
