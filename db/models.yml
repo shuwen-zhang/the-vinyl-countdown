@@ -23,9 +23,12 @@ CollectionRecord    # join table for collection and vinyls
   vinyl_id: integer
 
 User
+  email: text
+  password_digest: text
+  #password: text
+  # used this to update column name from "username" to "email"
+  # ActiveRecord::Base.connection.rename_column "users", "username", "email"
   #name: text
-  username: text
-  password: text
   # has many collections
   # has one wishlist
 

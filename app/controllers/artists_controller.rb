@@ -23,11 +23,11 @@ class ArtistsController < ApplicationController
   # def show
 
   def update
-    artist = Artist.find_by(id: params["id"])
-    artist.name = params["name"]
-    artist.save
+    @artist = Artist.find_by(id: params["id"])
+    @artist.name = params["name"]
+    @artist.save
 
-    if artist.errors.any?
+    if @artist.errors.any?
       flash[:error] = "#Artist was not updated."
     else
       flash[:success] = "#{artist.name} was successfully updated."
@@ -37,8 +37,8 @@ class ArtistsController < ApplicationController
   end
 
   def destroy
-    artist = Artist.find_by(id: params["id"])
-    artist.delete
+    @artist = Artist.find_by(id: params["id"])
+    @artist.delete
     flash[:success] = "#{artist.name} was successfully deleted."
     redirect_to "/artists"
   end

@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+
+<% user = User.find_by(id: params["id"]) %>
+
+<h1 class="text-center">User Profile</h3>
+<hr>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-6 offset-sm-3 centered">
+
+  <table class="table table-light">
+    <tbody>
+      <tr>
+        <th>Email</th>
+        <td><%= user.email %></td>
+      </tr>
+      <tr>
+        <th>Password</th>
+        <td><i>hidden</i></td>
+      </tr>
+      <tr>
+        <th>Account Created</th>
+        <td><%= user.created_at %></td>
+      </tr>
+    </tbody>
+  </table>
+
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3 offset-sm-5 centered">
+
+    <%= link_to "Edit Account", "/users/#{user.id}/edit", class: 'btn btn-secondary btn-sm'%>
+    <%= link_to "Delete Account", "/users/#{user.id}", method: 'delete', data: { confirm: "This will delete all your account information, including your collections, and can't be undone. Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+
+  </div>
+</div>
+
+</div>

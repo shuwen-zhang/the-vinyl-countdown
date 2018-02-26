@@ -1,0 +1,24 @@
+<h3 class="text-center">Login</h1>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-4 offset-sm-4 centered">
+
+    <%= form_tag "/sessions" do %>
+
+      <p>Email: <input name="email" type="text" autofocus class="form-control" required></p>
+      <p>Password: <input name="password" type="password" autofocus class="form-control" required></p>
+
+      <button class="btn btn-primary btn-block">Log In</button>
+      <%= link_to "Cancel", "/", class: 'btn btn-secondary btn-block' %>
+
+      <p>
+      	<h5 class="text-center">New to the Vinyl Countdown?<br>
+      		<a href="/users/new">Sign Up</a></h5>
+      </p>
+
+    <% end %>
+
+  </div>
+</div>
+</div>

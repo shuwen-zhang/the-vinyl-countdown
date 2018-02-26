@@ -1,6 +1,10 @@
 class VinylsController < ApplicationController
 
-  # def index
+  def index
+    if session[:user_id] != nil
+      @user = User.find_by(id: session[:user_id])
+    end
+  end
 
   # def new
 

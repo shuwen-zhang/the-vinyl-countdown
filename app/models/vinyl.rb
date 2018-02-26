@@ -2,7 +2,7 @@ class Vinyl < ApplicationRecord
 	
 	belongs_to :artist	# many-to-one relationship with artist
 	has_many :collection_records
-	has_many :collections, through: :collection_records
+	has_many :collections, through: :collection_records, dependent: :destroy
 	has_many :ratings		# rated by many users
 
 	# validates that attributes are not empty before saving into database

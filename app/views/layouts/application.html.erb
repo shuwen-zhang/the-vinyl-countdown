@@ -36,13 +36,21 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="mr-auto navbar-nav mt-2 mt-md-0">
             <li class="nav-item" class="active"><a class="nav-link" href="/vinyls">Vinyls</a></li>
-            <li class="nav-item"><a class="nav-link" href="/artists">Artists</a></li>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="/artists">Artists</a></li>            
+            <% if session[:user_id] != nil %>
+              <li class="nav-item"><a class="nav-link" href="/collections">Collections</a></li>
+            <% end %>
           </ul>
 
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
-            <li class="nav-item"><a class="nav-link" href="#"directors">Login</a></li>
+              <% if session[:user_id] != nil %>
+                <li class="nav-item"><a class="nav-link" href="/users/<%= session[:user_id] %>">My Account</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+              <% else %>
+                <li class="nav-item"><a class="nav-link" href="/users/new">Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link" href="/sessions/new">Log In</a></li>
+              <% end %>
+            </li>
           </ul>
         </div>
 
@@ -71,6 +79,26 @@
 
 
     <div class="container-fluid">
+
+      <br>
+
+      <% if flash[:error] %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Oh snap! </strong><%= flash[:error].html_safe %>
+        </div>
+      <% end %>
+
+      <% if flash[:success] %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Groovy! </strong><%= flash[:success].html_safe %>
+        </div>
+      <% end %>
 
       <%= yield %>
 

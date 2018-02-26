@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   patch "/vinyls/:id" => "vinyls#update"
   delete "/vinyls/:id" => "vinyls#destroy"
 
+
   # Resources for Artists
   get "/artists" => "artists#index"
   get "/artists/new" => "artists#new"
@@ -23,6 +24,21 @@ Rails.application.routes.draw do
   get "/artists/:id/edit" => "artists#edit"
   patch "/artists/:id" => "artists#update"
   delete "/artists/:id" => "artists#destroy"
+
+
+  # Resources for Users
+  get "/users" => "users#index"
+  get "/users/new" => "users#new"
+  post "/users" => "users#create"
+  get "/users/:id" => "users#show"
+  delete "/users/:id" => "users#destroy"
+  get "/users/:id/edit" => "users#edit"
+  patch "/users/:id" => "users#update"
+
+  get "/sessions/new" => "sessions#new"
+  post "/sessions" => "sessions#create"
+  get "/logout" => "sessions#destroy"
+
 
   # Resources for Collections
   get "/collections" => "collections#index"

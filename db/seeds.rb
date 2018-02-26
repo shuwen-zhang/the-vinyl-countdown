@@ -12,6 +12,7 @@
 
 Vinyl.delete_all
 Artist.delete_all
+User.delete_all
 
 artists = ["Erykah Badu", "Stevie Wonder", "D'Angelo", "Django Reinhardt", 
 			 "Oscar Peterson", "Erroll Garner", "Elis Regina"]
@@ -87,15 +88,27 @@ vinyls.each do |vinyl_data|
 end
 
 
-users = [{"username" => "Tom", "password" => "Jerry"}, {"username" => "Silvester", "password" => "Tweety"}]
+users = [
+  {"email" => "tom@example.com", "password" => "jerry"}, 
+  {"email" => "silvester@example.com", "password" => "tweety"},
+  {"email" => "claude@example.com", "password" => "frisky"}, 
+  {"email" => "garfield@example.org", "password" => "arlene"},
+  {"email" => "pink@example.com", "password" => "panther"}, 
+  {"email" => "hobbes@example.org", "password" => "calvin"}
+]
 
 users.each do |user|
-  u = User.new
-  u.username = user["username"]
-  u.password = user["password"]
-  u.save
+  User.create(email: user["email"], 
+              password: user["password"], 
+              password_confirmation: user["password"])
+
+ # u = User.new
+  #u.email = user["email"]
+  #u.password = user["password"]
+  #u.save
 end
 
 
 print "There are now #{Vinyl.count} vinyls in the database.\n"
 print "There are now #{Artist.count} artists in the database.\n"
+print "There are now #{User.count} users in the database.\n"

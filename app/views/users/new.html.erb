@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+
+<h3 class="text-center">Sign Up</h3>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-4 offset-sm-4 centered">
+
+    <%= form_tag "/users" do %>
+
+      <p>Email: <span class="required">*</span> 
+        <input value="<%= @user.email %>" name="email" type="text" autofocus class="form-control" required></p>
+      <p>Password: <span class="required">*</span> 
+        <input name="password" type="password" autofocus class="form-control" pattern=".{5,}" required title="5 characters minimum"  required></p>
+      <p>Re-enter Password: <span class="required">*</span> 
+        <input name="password_confirmation" type="password" autofocus class="form-control" pattern=".{5,}" required title="5 characters minimum" required></p>
+
+      <button class="btn btn-primary btn-block">Sign Me Up</button>
+
+    <% end %>
+
+
+    <p>
+      <h5 class="text-center">Already have an account?<br>
+        <a href="/sessions/new">Log In</a></h5>
+    </p>
+
+  </div>
+</div>
+</div>

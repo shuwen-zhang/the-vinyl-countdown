@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+<% collection = Collection.find_by(id: params["id"]) %>
+
+<br>
+<h1 class="text-center">Collections</h1>
+<h3 class="text-center">Vinyls in <%= collection.name %> </h3>
+
+<div class="row">
+
+  <% if collection.collection_records.empty? %>
+    <div class="col-sm-4 offset-sm-4 text-center">
+      <br>
+      Your collection looks pretty bare. Browse and add vinyls 
+       <%= link_to "here", "/vinyls" %>.
+     </div>
+  <% end %>
+
+  <!-- Display vinyls in the order they were added to collection -->
+  <% collection.collection_records.order('updated_at').each do |record| %>
+      <% vinyl = Vinyl.find_by(id: record.vinyl_id) %>
+
+    <div class="col-sm-3 my-3 text-center">
+
+      <% image_url = (vinyl.image_url.present? ? vinyl.image_url : 'na.png') %>
+
+    <div class="album_container">
+    	<div class="overlay">
+      	<div class="album_title"><%= vinyl.title %></div>
+      </div>
+     
+      <%= link_to image_tag(image_url, :class => "img-fluid circular_image"), "/vinyls/#{vinyl.id}" %>
+  	</div>
+		<br><p>
+        <i><%= vinyl.title %></i> (<%= vinyl.year %>)<br>
+        <%= link_to vinyl.artist.name, "/artists/#{vinyl.artist_id}" %>
+    	</p>
+      
+    </div>
+
+  <% end %>
+
+</div>

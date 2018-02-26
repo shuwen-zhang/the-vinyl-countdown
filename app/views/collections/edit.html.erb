@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+<% collection = Collection.find_by(id: params["id"]) %>
+
+<br>
+<h1 class="text-center">Collections</h1>
+
+<div class="container">
+  <h3 class="text-center">Update <%= collection.name %></h3>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 centered">
+
+    <%= form_tag "/collections/#{collection.id}", method: "patch" do %>  
+
+      <p>Name: 
+        <input name="name" type="text" autofocus class="form-control" value="<%= collection.name %>">
+    	</p>
+      
+      <button class="btn btn-secondary btn-block">Update Artist</button>
+      <%= link_to "Cancel", "/collections", class: 'btn btn-secondary btn-block' %>
+
+    <% end %>
+
+  </div>
+</div>
+</div>
+
+

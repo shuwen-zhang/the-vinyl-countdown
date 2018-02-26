@@ -1,25 +1,5 @@
 <%= stylesheet_link_tag 'vinyl_index' %>
 
-<br>
-
-  <% if flash[:error] %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>Oh snap! </strong><%= flash[:error] %>
-    </div>
-  <% end %>
-
-  <% if flash[:success] %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>Groovy! </strong><%= flash[:success] %>
-    </div>
-  <% end %>
-
 <h1 class="text-center">Vinyls</h1>
 
 <div class="row">
@@ -49,8 +29,8 @@
       </div>
       <%= link_to image_tag(image_url, :class => "img-fluid circular_image"), "/vinyls/#{vinyl.id}" %>
   	</div>
-		<br><p>
-    		<%= vinyl.artist.name %>
+		<br><p><i><%= vinyl.title %></i> (<%= vinyl.year %>)<br>
+        <%= link_to vinyl.artist.name, "/artists/#{vinyl.artist.id}" %>
     	</p>
       <p>
         <div class="btn btn-outline-secondary btn-sm">
@@ -61,13 +41,25 @@
         <%= link_to "Delete", "/vinyls/#{vinyl.id}", method: "delete", data: { confirm: "Are you sure?" } %>
         </div>
 
-        <div class="dropdown">
-          <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Add to Collection </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">User's collection1</a>
-            <a class="dropdown-item" href="#">User's collection2</a>
-            </div>
+        <% if session[:user_id] != nil %>
+          <div class="dropdown">
+            <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Add to Collection </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+            <% @user.collections.order('name').each do |collection| %>
+              <a class="dropdown-item" href="/collections/<%=collection.id%>">
+                <%= collection.name %></a>
+
+                <!-- collection << vinyl -->
+
+              <% end %>
+              </div>
           </div>
+
+
+        <% end %>
+
+
 
 
       </p>
@@ -76,3 +68,5 @@
   <% end %>
 
 </div>
+
+
