@@ -1,8 +1,8 @@
 class Collection < ApplicationRecord
 
 	belongs_to :user	# many-to-one relationship with user
-	has_many :collection_records
-	has_many :vinyls, through: :collection_records, dependent: :destroy
+	has_many :collection_records, dependent: :destroy
+	has_many :vinyls, through: :collection_records
 
 	validates :name, :user_id, presence: true	
 

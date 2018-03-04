@@ -1,13 +1,16 @@
 <%= stylesheet_link_tag 'vinyl_index' %>
 
 <h1 class="text-center">Artists</h1>
+<br>
 
 <div class="container">
   <div class="row">
 
+  <% if session[:user_id] != nil %>
   <div class="mx-auto my-3">
     <%= link_to "+ Add New Artist", "/artists/new", class: 'btn btn-primary' %>
   </div>
+  <% end %>
 
 
   <table class="table table-hover">
@@ -15,7 +18,9 @@
       <tr>
         <th>Name</th>
         <th>Vinyls</th>
-        <th></th>
+        <% if session[:user_id] != nil %>
+        <th>Actions</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +40,7 @@
           <% end %>
         </ul></td>
 
+        <% if session[:user_id] != nil %>
         <td>
           <div class="dropdown">
             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  </button>
@@ -44,6 +50,7 @@
             </div>
           </div>
         </td>
+        <% end %>
       
       </tr>
       <% end %>

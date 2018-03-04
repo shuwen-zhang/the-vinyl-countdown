@@ -2,7 +2,9 @@
 
 ### Purpose of the Web Application
 
-**The Vinyl Countdown** is a vinyl record management system, inspired by [Discogs.com](discogs.com). Users can browse vinyls and add them to their collections (of which they can have multiple), rate or add comments to the vinyl records in their collections, and also add add vinyls and artists that don't yet exist in the web application database. For simplicity's sake, this web app assumes that there can be only one release for any album name + artist combination, though of course in reality there may be many different versions and releases of the same record by the same artist.
+**The Vinyl Countdown** is a vinyl record management system, inspired by [Discogs.com](discogs.com). Users can browse vinyls and add them to their collections (of which they can have multiple) and also add add vinyls and artists that don't yet exist in the web application database. For simplicity's sake, this web app assumes that there can be only one release for any album name + artist combination, though of course in reality there may be many different versions and releases of the same record by the same artist.
+
+In the future, I hope to add a functionality for users to rate or add comments to the vinyl records in their collections.
 
 ### Getting Started
 
@@ -15,8 +17,8 @@
 
 ### Models Used by the Web Application
 * User
+* Session
 * Vinyl
 * Artist
 * Collection
 * CollectionRecord (join table of Collection and Vinyl)
-* Rating

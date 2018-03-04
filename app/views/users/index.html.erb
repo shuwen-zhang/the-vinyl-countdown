@@ -8,28 +8,34 @@
   <div class="my-3 mx-auto">
     <%= link_to "Add a New User", "/users/new", class: 'btn btn-primary' %>
   </div>
+</div>
 
-  <table class="table table-striped table-bordered">
-    <thead>
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
       <tr>
         <th>Name</th>
-        <th></th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.email %></td>
-          <td><%= user.password %></td>
+          <td><%= link_to user.email, "/users/#{user.id}" %></td>
           <td>
-            <%= link_to "[View]", "/users/#{user.id}" %>
-            <%= link_to "[Edit]", "/users/#{user.id}/edit" %>
-            <%= link_to "[Delete]", "/users/#{user.id}", method: 'delete' %>
+            <div class="dropdown">
+              <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/users/<%=user.id%>/edit">Edit</a>
+                <a class="dropdown-item" href="/users/<%=user.id%>" data-method="delete" data-confirm="Are you sure? All your data and collections will be permanently gone.">Delete</a>
+              </div>
+            </div>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+</div>
 </div>
 </div>

@@ -23,19 +23,28 @@
         <th>Account Created</th>
         <td><%= user.created_at %></td>
       </tr>
+      <tr>
+        <th>Number of Collections</th>
+        <td><%= user.collections.count %></td>
+      </tr>
     </tbody>
   </table>
 
+  <%= link_to "Edit Account", "/users/#{user.id}/edit", class: 'btn btn-secondary btn-sm btn-block'%>
+  <%= link_to "Delete Account", "/users/#{user.id}", method: 'delete', data: { confirm: "This will delete all your account information, including your collections, and can't be undone. Are you sure?" }, class: 'btn btn-danger btn-sm btn-block' %>
+
+<!--   <div class="row">
+    <div class="col-sm-6 text-center">
+
     </div>
-</div>
+    <div class="col-sm-6 text-center">
 
-<div class="row">
-  <div class="col-sm-3 offset-sm-5 centered">
-
-    <%= link_to "Edit Account", "/users/#{user.id}/edit", class: 'btn btn-secondary btn-sm'%>
-    <%= link_to "Delete Account", "/users/#{user.id}", method: 'delete', data: { confirm: "This will delete all your account information, including your collections, and can't be undone. Are you sure?" }, class: 'btn btn-danger btn-sm' %>
-
-  </div>
-</div>
+    </div>
+  </div> -->
 
 </div>
+
+
+</div>
+
+

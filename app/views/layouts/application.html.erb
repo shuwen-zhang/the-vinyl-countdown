@@ -42,9 +42,14 @@
             <% end %>
           </ul>
 
+          <form class="form-inline my-2 my-lg-0 mx-auto" action="/vinyls">
+            <input name="search" class="form-control mr-sm-2" size="30" type="search" placeholder="Search for vinyl by title, artist..." aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+
           <ul class="navbar-nav ml-auto">
               <% if session[:user_id] != nil %>
-                <li class="nav-item"><a class="nav-link" href="/users/<%= session[:user_id] %>">My Account</a></li>
+                <li class="nav-item"><a class="nav-link" href="/users/<%= session[:user_id] %>">Hello <%= User.find_by(id: session[:user_id]).email %></a></li> 
                 <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
               <% else %>
                 <li class="nav-item"><a class="nav-link" href="/users/new">Sign Up</a></li>
@@ -97,6 +102,15 @@
           <span aria-hidden="true">&times;</span>
           </button>
           <strong>Groovy! </strong><%= flash[:success].html_safe %>
+        </div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <%= flash[:notice].html_safe %>
         </div>
       <% end %>
 

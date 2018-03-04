@@ -11,7 +11,7 @@
     <%= form_tag "/collections" do %>  <!-- post to vinyls, call create -->
 
       <p>Name: <span class="required">*</span> 
-        <input name="name" type="text" autofocus class="form-control" required></p>
+        <input name="name" value="<%= @collection.name %>" type="text" autofocus class="form-control" required></p>
       <%= submit_tag "Create", :class => "btn btn-secondary btn-block"%>
       <%= link_to "Cancel", "/collections", class: 'btn btn-secondary btn-block' %>
 

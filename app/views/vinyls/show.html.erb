@@ -3,60 +3,96 @@
 <br><% vinyl = Vinyl.find_by(id: params["id"]) %>
 
 <h1 class="text-center">Vinyls</h1>
-
 <br>
 
 <div class="row">
-
-  <div class="col-sm-3 offset-sm-1">
+  <div class="col-sm-6 offset-sm-3 text-center">
+    
+    <div class="row">
+      <div class="col-sm-6 offset-3 text-center">
     <%= image_tag vinyl.image_url, :class => "img-fluid" %>
-  </div>
+      </div>
+    </div>
 
-  <div class="col-sm-6">
+    <p>
     <h2><%= vinyl.title %> (<%= vinyl.year %>)</h2>
     <% if vinyl.artist.present? %>
       <h3 class="text-muted">
         <%= link_to vinyl.artist.name, "/artists/#{vinyl.artist.id}" %></h3>
       <h5 class="text-muted">
         <% if vinyl.runtime.present? %>
-        <%= "Runtime: #{vinyl.runtime} min" %>
+          <%= "Runtime: #{vinyl.runtime} min" %>
         <% end %>
       </h5>
+    </p>
     <% end %>
-
-    <% if session[:user_id] != nil %>
-      <% @user = User.find_by(:id => session[:user_id]) %>
-
-      <br>
-      <p>This record is in these collections:</p>
-
-      <ul>
-        <% @user.collections.order('name').each do |collection| %>
-            <% if collection.vinyls.find_by(:id => vinyl.id) %>
-              <li><%= link_to collection.name, "/collections/#{collection.id}" %></li>
-            <% end %>
-        <% end %>
-      </ul>
-    <% end %>
-
 
   </div>
 </div>
 
-<br>
+
+
+<!-- If logged in, display both recordings by artist, and collections containing the vinyl -->
+
+<div class="row">
+  <p>
+  <% if session[:user_id] != nil %>
+    <div class="col-sm-5 offset-sm-1">
+  <% else %>
+    <div class="col-sm-6 offset-sm-3">
+  <% end %>
+
+    <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#multiCollapseArtist" aria-expanded="false" aria-controls="multiCollapseArtist">Recordings By This Artist</button>
+  </div>
+
+  <% if session[:user_id] != nil %>
+  <div class="col-sm-5">
+    <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#multiCollapseCollection" aria-expanded="false" aria-controls="multiCollapseCollection">In These Collections</button>
+  </div>
+  <% end %>
+</p>
+</div>
 
 <div class="row">
 
-  <div class="col-sm-6 offset-sm-1">
-    <% if vinyl.artist.present? %>
-      <p>Recordings by this artist:</p>
+  <% if session[:user_id] != nil %>
+    <div class="col-sm-5 offset-sm-1">
+  <% else %>
+    <div class="col-sm-6 offset-sm-3">
+  <% end %>
+
+  <div class="collapse multi-collapse" id="multiCollapseArtist">
+    <div class="card card-body">
+      <% if vinyl.artist.present? %>
+        <ul>
+          <% vinyl.artist.vinyls.each do |vinyl| %>
+            <li><%= link_to vinyl.title, "/vinyl/#{vinyl.id}" %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  </div>
+
+  <% if session[:user_id] != nil %>
+  <div class="col-sm-5">
+  <div class="collapse multi-collapse" id="multiCollapseCollection">
+    <div class="card card-body">
+      <% @user = User.find_by(:id => session[:user_id]) %>
 
       <ul>
-        <% vinyl.artist.vinyls.each do |vinyl| %>
-          <li><%= link_to vinyl.title, "/vinyl/#{vinyl.id}" %></li>
+        <% @collections.each do |collection| %>
+          <% if collection.vinyls.find_by(:id => vinyl.id) %>
+            <li><%= link_to collection.name, "/collections/#{collection.id}" %></li>
+          <% end %>
         <% end %>
       </ul>
 
-    <% end %>
+    </div>
   </div>
+  </div>
+  <% end %>
+
 </div>
+
+

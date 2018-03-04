@@ -6,7 +6,7 @@ class CollectionRecord < ApplicationRecord
 	validates :collection_id, :vinyl_id, presence: true	
 
 	# Can't have two copies of same vinyl in a collection
-	validates :collection_id, uniqueness: {
-		scope: :vinyl_id}
+	validates :vinyl_id, uniqueness: {
+		scope: :collection_id }
 
 end

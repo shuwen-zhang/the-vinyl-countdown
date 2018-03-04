@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag 'vinyl_index' %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 offset-1">
+
+		<div class="jumbotron mx-3">
+		  <h1 class="display-4 text-center">Welcome to the Vinyl Countdown</h1>
+		  <br>
+		  	<p class="lead">Finally, a place to keep track of the vinyl records you own and the ones on your wishlist.
+			</p>
+
+		  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+		    <div class="carousel-inner">
+		      <div class="carousel-item active">
+		      	<div class="carousel-content">
+		      		<p>Search and browse through a trove of vinyls and artists. If you're logged-in, you can also add missing vinyls and artists.
+		      		</p>
+		      	</div>
+		      </div>
+
+		      <div class="carousel-item">
+		      	<div class="carousel-content">
+		      		<p>Sign up to create Collections to which you can add vinyl records. Set them up by genre or time periods, by wishlists and already-haves -- however you want!</p>
+		      	</div>
+		      </div>
+
+		      <div class="carousel-item">
+		      	<div class="carousel-content">
+		      		<p>Create an account to use the Collections feature and add/edit vinyls and artists. <%= link_to "Sign up now!", "/users/new" %> 
+		      	</div>
+		      </div>
+
+		    </div>
+		    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		      <span class="sr-only">Previous</span>
+		    </a>
+		    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		      <span class="sr-only">Next</span>
+		    </a>
+		  </div>
+
+
+		  <br>
+		  <p class="lead">
+		  	<%= link_to "Sign Up", "/users/new", class: 'lead btn btn-primary btn-lg'%> 
+		  	<%= link_to "Check Out the Vinyls", "/vinyls", class: 'lead btn btn-primary btn-lg'%> 
+		  </p>
+		</div>
+		</div>
+	</div>
+</div>

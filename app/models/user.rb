@@ -12,7 +12,12 @@ class User < ApplicationRecord
 	has_many :collections, dependent: :destroy	# deleting user will delete the collections
 	has_many :ratings	# can rate the records in their collections
 
-	validates :email, :password, :password_confirmation, presence: true	
+	validates :email, presence: true	
+
+	# password not needed when editing email
+	validates :password, presence: true, :unless => :already_has_password?
+	# password confirmation needed only when password is created/changed
+	validates :password_confirmation, presence: true, :if => :password_digest_changed?
 
 	validates :email, 
 		uniqueness: { case_sensitive: false}
@@ -21,6 +26,13 @@ class User < ApplicationRecord
 	validates :password, 
 		length: { minimum: 5 },	#8
 		#format: { with: PASSWORD_FORMAT },
-		confirmation: true
+		confirmation: true,
+		:unless => :already_has_password?
+
+	private
+	    def already_has_password?
+	      !self.password_digest.blank?
+	    end
+
 
 end

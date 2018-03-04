@@ -10,11 +10,12 @@ class ArtistsController < ApplicationController
     if @artist.errors.any?
       flash[:error] = "Artist was not added because someone 
       of the same name already exists."
+      render "/artists/new"
     else
       flash[:success] = "#{@artist.name} was successfully added."
+      redirect_to "/artists"
     end
 
-    redirect_to "/artists"
   end
 
   # def edit
@@ -28,18 +29,19 @@ class ArtistsController < ApplicationController
     @artist.save
 
     if @artist.errors.any?
-      flash[:error] = "#Artist was not updated."
+      flash[:error] = "Artist was not updated."
+      redirect_to "/artists/#{@artist.id}/edit"
     else
-      flash[:success] = "#{artist.name} was successfully updated."
+      flash[:success] = "#{@artist.name} was successfully updated."
+      redirect_to "/artists"
     end
 
-    redirect_to "/artists"
   end
 
   def destroy
     @artist = Artist.find_by(id: params["id"])
-    @artist.delete
-    flash[:success] = "#{artist.name} was successfully deleted."
+    @artist.destroy
+    flash[:success] = "#{@artist.name} was successfully deleted."
     redirect_to "/artists"
   end
 

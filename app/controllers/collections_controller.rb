@@ -1,8 +1,17 @@
 class CollectionsController < ApplicationController
 
-  # def index
+  def index
+    # create a variable for all the collections that belongs to that user
+    if session[:user_id] != nil
+      @collections = Collection.where(user_id: session[:user_id]).all.order('name')
+    end
+  end
 
-  # def new
+
+  def new
+    @collection = Collection.new
+  end
+
 
   def create
     @collection = Collection.create :name => params["name"],
@@ -10,11 +19,12 @@ class CollectionsController < ApplicationController
 
     if @collection.errors.any?
       flash[:error] = "A collection of the same name already exists."
+      render "collections/new"
     else
       flash[:success] = "#{@collection.name} was successfully created."
+      redirect_to "/collections"
     end
     
-    redirect_to "/collections"
   end
 
 
@@ -45,19 +55,20 @@ class CollectionsController < ApplicationController
 
     if @collection.errors.any?
       flash[:error] = "Collection was not updated."
+      redirect_to "/collections/#{@collection.id}/edit"
     else
       flash[:success] = "Collection was successfully updated."
+      redirect_to "/collections"
     end
-    
-    redirect_to "/collections"
+
   end
 
 
   def destroy
     @collection = Collection.find_by(id: params["id"])
-    @collection.delete
+    @collection.destroy
     flash[:success] = "Collection successfully deleted."
-    redirect_to "/collection"
+    redirect_to "/collections"
   end
 
 end

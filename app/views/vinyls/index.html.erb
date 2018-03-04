@@ -4,69 +4,77 @@
 
 <div class="row">
 
+  <!-- Add New Vinyl (only for logged-in users) -->
+  <% if session[:user_id] != nil %>
   <div class="col-sm-3 my-3 text-center">
     <div class="album_container">
         <div class="overlay">
           <div class="album_title" class="font-italic">ADD NEW VINYL</div>
         </div>
-
-    <%= link_to image_tag("add_new_vinyl.png", :class => "img-fluid circular_image"), "/vinyls/new" %>
+        <%= link_to image_tag("add_new_vinyl.png", :class => "img-fluid circular_image"), "/vinyls/new" %>
     </div>
-    <br><p>
-      <%= link_to "+ Add New Vinyl", "/vinyls/new", class: "btn btn-primary"%> 
-    </p>
+    <br><p><%= link_to "+ Add New Vinyl", "/vinyls/new", class: "btn btn-primary"%></p>
   </div>
+  <% end %>
 
-  <% Vinyl.all.order('created_at desc').each do |vinyl| %>
+  <!-- Display All Vinyls -->
+  <% @vinyls.each do |vinyl| %>
 
     <div class="col-sm-3 my-3 text-center">
-
       <% image_url = (vinyl.image_url.present? ? vinyl.image_url : 'na.png') %>
 
-    <div class="album_container">
-    	<div class="overlay">
-      	<div class="album_title"><%= vinyl.title %></div>
-      </div>
-      <%= link_to image_tag(image_url, :class => "img-fluid circular_image"), "/vinyls/#{vinyl.id}" %>
-  	</div>
-		<br><p><i><%= vinyl.title %></i> (<%= vinyl.year %>)<br>
+      <div class="album_container">
+      	<div class="overlay">
+        	<div class="album_title"><%= vinyl.title %></div>
+        </div>
+        <%= link_to image_tag(image_url, :class => "img-fluid circular_image"), "/vinyls/#{vinyl.id}" %>
+    	</div>
+		
+      <br><p><i><%= vinyl.title %></i> (<%= vinyl.year %>)<br>
         <%= link_to vinyl.artist.name, "/artists/#{vinyl.artist.id}" %>
     	</p>
+
+      <p>
+        <!-- Can add to collections, edit/delete vinyls only if user is logged in -->
+        <% if session[:user_id] != nil %>
+
+        <div class="row">
+          <div class="col-sm-7 offset-sm-1" style="padding:0">
+            <%= form_tag "/vinyls/add-to-collections" do %>  <!-- post to vinyls, call create -->
+              <select name="collection_id" class="form-control">
+                <option value="" disabled selected>Add to Collection</option>
+                <% @user.collections.order('name').each do |collection|  %>
+                  <option value="<%= collection.id %>">
+                  <%= collection.name %>
+                  </option>
+                <% end %>
+              </select>
+              <%= hidden_field_tag "vinyl_id", vinyl.id %>
+          </div>
+
+        <div class="col-sm-3" style="padding:0">
+          <%= submit_tag "Add", :class => "btn btn-outline-primary"%>
+        </div>
+        </div>
+        <% end %>
+      </p>
+
       <p>
         <div class="btn btn-outline-secondary btn-sm">
         <%= link_to "Edit", "/vinyls/#{vinyl.id}/edit" %>
         </div>
 
         <div class="btn btn-outline-danger btn-sm">
-        <%= link_to "Delete", "/vinyls/#{vinyl.id}", method: "delete", data: { confirm: "Are you sure?" } %>
+        <%= link_to "Delete", "/vinyls/#{vinyl.id}", method: "delete", data: { confirm: "Are you sure? The vinyl will be deleted from all the collections that hold it." } %>
         </div>
-
-        <% if session[:user_id] != nil %>
-          <div class="dropdown">
-            <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Add to Collection </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-            <% @user.collections.order('name').each do |collection| %>
-              <a class="dropdown-item" href="/collections/<%=collection.id%>">
-                <%= collection.name %></a>
-
-                <!-- collection << vinyl -->
-
-              <% end %>
-              </div>
-          </div>
-
-
-        <% end %>
-
-
-
-
       </p>
-    </div>
 
+      <% end %>
+
+    </div>
   <% end %>
 
 </div>
+
 
 

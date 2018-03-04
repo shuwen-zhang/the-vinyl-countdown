@@ -26,25 +26,40 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params["id"])
     @user.email = params["email"]
-    @user.password = params["password"]
+
+    if not params["password"].empty?
+      @user.password = params["password"]
+    end
+    if not params["password_confirmation"].empty?
+      @user.password_confirmation = params["password_confirmation"]
+    end
+
     if @user.save
       flash[:success] = "Account information successfully updated."
+      redirect_to "/users/#{@user.id}"
     else
-      flash[:error] = "Account information was not updated.<br><li>".html_safe
+      flash[:error] = "Account information was not updated. ".html_safe
+      # <br><li>
       flash[:error] << @user.errors.full_messages.join("<br><li>").html_safe
+      redirect_to "/users/#{@user.id}/edit"
     end
-    redirect_to "/users"
+
   end
+
 
   def new
     @user = User.new
   end
 
   def destroy
-    user = User.find_by(id: params["id"])
-    user.delete
-    flash[:success] = "Account was successfully deleted."
-    reset_session  # need to log out
+    if params["id"] != session[:user_id].to_s
+      flash[:error] = "Nice try!"
+    else 
+      user = User.find_by(id: params["id"])
+      user.destroy
+      flash[:success] = "Account was successfully deleted."
+      reset_session  # need to log out
+    end
     redirect_to "/users"
   end
 
@@ -55,14 +70,11 @@ class UsersController < ApplicationController
     if @user.errors.any?
       flash[:error] = "<br><li>".html_safe
       flash[:error] << @user.errors.full_messages.join("<br><li>").html_safe
-
-      # redirect_to "/users/new", notice: "Something went wrong"  
-      # notice is cookie-based, stay within the response cycle
       render "/users/new"
     else
       flash[:success] = "Thanks for signing up!"
       session[:user_id] = @user.id     # log the user in by setting session
-      redirect_to "/users"
+      redirect_to "/vinyls"
     end
     # altnerative way
     # if @user.save

@@ -6,12 +6,14 @@
 
 <div class="container">
 <div class="row">
+
   <div class="col-sm-4 offset-sm-4 centered">
 
     <%= form_tag "/users/#{user.id}", method: "patch" do %>
 
       <p>Email: <input value="<%= user.email %>" name="email" type="text" autofocus class="form-control"></p>
-      <p>Password: <input value="<%= user.password %>" name="password" type="text" autofocus class="form-control"></p>
+      <p>Password: <input name="password" type="password" autofocus class="form-control" pattern=".{5,}" title="5 characters minimum" ></p>
+      <p>Re-enter Password:  <input name="password_confirmation" type="password" autofocus class="form-control" pattern=".{5,}" title="5 characters minimum"></p>
 
       <button class="btn btn-primary btn-block">Update User</button>
       <%= link_to "Cancel", "/users", class: 'btn btn-secondary btn-block' %>
@@ -19,5 +21,7 @@
     <% end %>
 
   </div>
+
+
 </div>
 </div>

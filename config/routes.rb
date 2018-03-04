@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Golden seven: index, show, edit, new, create, update, delete
-  root 'vinyls#index'
+  #root 'vinyls#index'
+  root 'sessions#index'
 
   # Resources for Vinyls
   get "/vinyls" => "vinyls#index"
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   get "/vinyls/:id/edit" => "vinyls#edit"
   patch "/vinyls/:id" => "vinyls#update"
   delete "/vinyls/:id" => "vinyls#destroy"
+
+  post "/vinyls/add-to-collections" => "vinyls#add" # add vinyl to collection
 
 
   # Resources for Artists
@@ -49,5 +52,9 @@ Rails.application.routes.draw do
   get "/collections/:id/edit" => "collections#edit"
   patch "/collections/:id" => "collections#update"
   delete "/collections/:id" => "collections#destroy"
+
+  # Resources for Collection_Records (join table of vinyls and collections)
+  #post "/collection-records" => "collection_records#create" # add vinyl to colleciton
+
 
 end

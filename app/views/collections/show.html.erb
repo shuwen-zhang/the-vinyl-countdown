@@ -3,7 +3,7 @@
 
 <br>
 <h1 class="text-center">Collections</h1>
-<h3 class="text-center">Vinyls in <%= collection.name %> </h3>
+<h3 class="text-center"><%= collection.name %> </h3>
 
 <div class="row">
 
@@ -16,7 +16,7 @@
   <% end %>
 
   <!-- Display vinyls in the order they were added to collection -->
-  <% collection.collection_records.order('updated_at').each do |record| %>
+  <% collection.collection_records.order('created_at').each do |record| %>
       <% vinyl = Vinyl.find_by(id: record.vinyl_id) %>
 
     <div class="col-sm-3 my-3 text-center">
