@@ -111,3 +111,6 @@ end
 print "There are now #{Vinyl.count} vinyls in the database.\n"
 print "There are now #{Artist.count} artists in the database.\n"
 print "There are now #{User.count} users in the database.\n"
+print "There are now #{Collection.count} collections in the database.\n"
+print "There are now #{CollectionRecord.count} collection_records in the database.\n"
+

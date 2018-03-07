@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
 
   def index
     # create a variable for all the collections that belongs to that user
-    if session[:user_id] != nil and User.exists?(:user_id)
+    if session[:user_id] != nil
       @collections = Collection.where(user_id: session[:user_id]).all.order('name')
     end
   end

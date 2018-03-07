@@ -1,7 +1,7 @@
 class VinylsController < ApplicationController
 
   def index
-    if session[:user_id] != nil and User.exists?(:user_id)
+    if session[:user_id] != nil 
       @user = User.find_by(id: session[:user_id])
     end
 
