@@ -13,6 +13,8 @@
 Vinyl.delete_all
 Artist.delete_all
 User.delete_all
+Collection.delete_all
+CollectionRecord.delete_all
 
 artists = ["Erykah Badu", "Stevie Wonder", "D'Angelo", "Django Reinhardt", 
 			 "Oscar Peterson", "Erroll Garner", "Elis Regina"]

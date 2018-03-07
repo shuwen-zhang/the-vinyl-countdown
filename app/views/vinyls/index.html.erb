@@ -43,10 +43,12 @@
             <%= form_tag "/vinyls/add-to-collections" do %>  <!-- post to vinyls, call create -->
               <select name="collection_id" class="form-control">
                 <option value="" disabled selected>Add to Collection</option>
+                <% if not @user.nil? %>
                 <% @user.collections.order('name').each do |collection|  %>
                   <option value="<%= collection.id %>">
                   <%= collection.name %>
                   </option>
+                <% end %>
                 <% end %>
               </select>
               <%= hidden_field_tag "vinyl_id", vinyl.id %>
