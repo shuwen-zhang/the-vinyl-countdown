@@ -40,7 +40,7 @@ class VinylsController < ApplicationController
   
 
   def show
-    if session[:user_id] != nil
+    if session[:user_id] != nil and User.exists?(:user_id)
       user = User.find_by(:id => session[:user_id])
       @collections = user.collections.order('name')
     end
