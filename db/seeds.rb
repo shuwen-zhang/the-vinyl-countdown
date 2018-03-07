@@ -10,11 +10,11 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-Vinyl.delete_all
-Artist.delete_all
-User.delete_all
-Collection.delete_all
-CollectionRecord.delete_all
+#Vinyl.delete_all
+#Artist.delete_all
+#User.delete_all
+#Collection.delete_all
+#CollectionRecord.delete_all
 
 artists = ["Erykah Badu", "Stevie Wonder", "D'Angelo", "Django Reinhardt", 
 			 "Oscar Peterson", "Erroll Garner", "Elis Regina"]
