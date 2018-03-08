@@ -2,6 +2,11 @@
 
 <h1 class="text-center">Vinyls</h1>
 
+<% if session[:user_id].nil? %>
+<p class="text-center"><a href="/sessions/new">Log in</a> or 
+<a href="/users/new">sign up</a> to add, edit, and delete artists.</p>
+<% end %>
+
 <div class="row">
 
   <!-- Add New Vinyl (only for logged-in users) -->
