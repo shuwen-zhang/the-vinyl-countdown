@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete "/vinyls/:id" => "vinyls#destroy"
 
   post "/vinyls/add-to-collections" => "vinyls#add" # add vinyl to collection
+  post "vinyls/remove-from-collections" => "vinyls#remove" # remove vinyl from collection
 
 
   # Resources for Artists

@@ -31,8 +31,11 @@ class CollectionsController < ApplicationController
   # make sure only owner of collection can edit
   def show
     @collection = Collection.find_by(id: params["id"])
-    if @collection.user_id != session[:user_id]
-      flash[:error] = "Nice try!"
+    if @collection.nil?
+      flash[:error] = "Collection doesn't exist."
+      redirect_to "/collections"
+    elsif @collection.user_id != session[:user_id]
+      flash[:error] = "You can only access your own collections."
       redirect_to "/collections"
     end
   end

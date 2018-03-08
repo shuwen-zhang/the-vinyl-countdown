@@ -1,42 +1,69 @@
 <%= stylesheet_link_tag 'vinyl_index' %>
-<% collection = Collection.find_by(id: params["id"]) %>
 
-<br>
-<h1 class="text-center">Collections</h1>
-<h3 class="text-center"><%= collection.name %> </h3>
+<% if Collection.exists?(id: params["id"]) %>
+  <% collection = Collection.find_by(id: params["id"]) %>
 
-<div class="row">
+  <br>
+  <h1 class="text-center">Collections</h1>
+  <h3 class="text-center"><%= collection.name %> </h3>
 
-  <% if collection.collection_records.empty? %>
-    <div class="col-sm-4 offset-sm-4 text-center">
-      <br>
-      Your collection looks pretty bare. Browse and add vinyls 
-       <%= link_to "here", "/vinyls" %>.
-     </div>
-  <% end %>
+  <div class="row">
 
-  <!-- Display vinyls in the order they were added to collection -->
-  <% collection.collection_records.order('created_at').each do |record| %>
-      <% vinyl = Vinyl.find_by(id: record.vinyl_id) %>
+    <% if collection.collection_records.empty? %>
+      <div class="col-sm-4 offset-sm-4 text-center">
+        <br>
+        Your collection looks pretty bare. Browse and add vinyls 
+         <%= link_to "here", "/vinyls" %>.
+       </div>
+    <% end %>
 
-    <div class="col-sm-3 my-3 text-center">
+    <!-- Display vinyls in the order they were added to collection -->
+    <% collection.collection_records.order('created_at').each do |record| %>
+        <% vinyl = Vinyl.find_by(id: record.vinyl_id) %>
 
-      <% image_url = (vinyl.image_url.present? ? vinyl.image_url : 'na.png') %>
+      <div class="col-sm-3 my-3 text-center">
 
-    <div class="album_container">
-    	<div class="overlay">
-      	<div class="album_title"><%= vinyl.title %></div>
+        <% image_url = (vinyl.image_url.present? ? vinyl.image_url : 'na.png') %>
+
+      <div class="album_container">
+      	<div class="overlay">
+        	<div class="album_title"><%= vinyl.title %></div>
+        </div>
+       
+        <%= link_to image_tag(image_url, :class => "img-fluid circular_image"), "/vinyls/#{vinyl.id}" %>
+    	</div>
+  		<br><p>
+          <i><%= vinyl.title %></i> (<%= vinyl.year %>)<br>
+          <%= link_to vinyl.artist.name, "/artists/#{vinyl.artist_id}" %>
+      	</p>
+
+        <p>
+          <!-- Can add to collections, edit/delete vinyls only if user is logged in -->
+
+          <div class="row">
+
+            <div class="col-sm-8 offset-sm-2 text-center" style="padding:0">
+              <%= form_tag "/vinyls/remove-from-collections" do %>  
+                <input type="hidden" value="<%= collection.id %>" name="collection_id">
+                <input type="hidden" value="<%= vinyl.id %>" name="vinyl_id">
+              <%= submit_tag "Remove", :class => "btn btn-outline-primary"%>
+              <% end %>
+            </div>
+
+          </div>
+        </p>
+        
       </div>
-     
-      <%= link_to image_tag(image_url, :class => "img-fluid circular_image"), "/vinyls/#{vinyl.id}" %>
-  	</div>
-		<br><p>
-        <i><%= vinyl.title %></i> (<%= vinyl.year %>)<br>
-        <%= link_to vinyl.artist.name, "/artists/#{vinyl.artist_id}" %>
-    	</p>
-      
-    </div>
 
-  <% end %>
+    <% end %>
+  </div>
 
-</div>
+
+<% else %> 
+  <p class="text-center">
+    Collection doesn't exist.
+  </p>
+<% end %>
+
+
+

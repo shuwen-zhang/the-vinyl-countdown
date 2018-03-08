@@ -95,4 +95,15 @@ class VinylsController < ApplicationController
   end
 
 
+  # remove vinyl from user's collection
+  def remove
+    @vinyl = Vinyl.find_by(id: params["vinyl_id"])
+    @collection = Collection.find_by(id: params["collection_id"])
+
+    @collection.vinyls.delete(@vinyl)
+    
+    redirect_to "/collections/#{@collection.id}"
+  end
+
+
 end

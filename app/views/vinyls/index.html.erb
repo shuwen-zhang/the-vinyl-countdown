@@ -39,9 +39,9 @@
         <% if session[:user_id] != nil %>
 
         <div class="row">
-          <div class="col-sm-7 offset-sm-1" style="padding:0">
+          <div class="col-sm-8 offset-sm-2" style="padding:0">
             <%= form_tag "/vinyls/add-to-collections" do %>  <!-- post to vinyls, call create -->
-              <select name="collection_id" class="form-control">
+              <select name="collection_id" class="form-control" onchange="this.form.submit()">
                 <option value="" disabled selected>Add to Collection</option>
                 <% #if not @user.nil? %>
                 <% @user.collections.order('name').each do |collection|  %>
@@ -54,9 +54,7 @@
               <%= hidden_field_tag "vinyl_id", vinyl.id %>
           </div>
 
-        <div class="col-sm-3" style="padding:0">
-          <%= submit_tag "Add", :class => "btn btn-outline-primary"%>
-        </div>
+
         </div>
         <% end %>
       </p>
