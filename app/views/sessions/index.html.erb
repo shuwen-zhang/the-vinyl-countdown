@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'vinyl_index' %>
 
+<!-- Home Page -->
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 offset-1">
@@ -15,14 +16,14 @@
 		    <div class="carousel-inner">
 		      <div class="carousel-item active">
 		      	<div class="carousel-content">
-		      		<p>Search and browse through a trove of vinyls and artists. If you're logged-in, you can also add missing vinyls and artists.
+		      		<p>Search and browse through a trove of vinyls and artists. If you're logged in, you can also add vinyls and artists.
 		      		</p>
 		      	</div>
 		      </div>
 
 		      <div class="carousel-item">
 		      	<div class="carousel-content">
-		      		<p>Sign up to create Collections to which you can add vinyl records. Set them up by genre or time periods, by wishlists and already-haves -- however you want!</p>
+		      		<p>Sign up to create Collections and start adding vinyl records. Set them up by genre or time periods, by wishlists or already-haves, however you want!</p>
 		      	</div>
 		      </div>
 
@@ -46,10 +47,21 @@
 
 		  <br>
 		  <p class="lead">
+		  	<% if session[:user_id].nil? %>
 		  	<%= link_to "Sign Up", "/users/new", class: 'lead btn btn-primary btn-lg'%> 
+		  	<%= link_to "Log In", "/sessions/new", class: 'lead btn btn-primary btn-lg'%>
+		  	<% end %>
 		  	<%= link_to "Check Out the Vinyls", "/vinyls", class: 'lead btn btn-primary btn-lg'%> 
 		  </p>
 		</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-10 offset-1">
+			<p style="font-size:80%"><i>
+			*This website is an assignment for a web development class. All the images come from other sources such as Discogs. Opening the images in a new tab will redirect you to the image source URL.
+			</i></p>
 		</div>
 	</div>
 </div>
