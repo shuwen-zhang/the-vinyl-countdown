@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'vinyl_index' %>
 
-<br><% vinyl = Vinyl.find_by(id: params["id"]) %>
+<br>
 
 <h1 class="text-center">Vinyls</h1>
 <br>
@@ -10,18 +10,18 @@
     
     <div class="row">
       <div class="col-sm-6 offset-3 text-center">
-    <%= image_tag vinyl.image_url, :class => "img-fluid" %>
+    <%= image_tag @vinyl.image_url, :class => "img-fluid" %>
       </div>
     </div>
 
     <p>
-    <h2><%= vinyl.title %> (<%= vinyl.year %>)</h2>
-    <% if vinyl.artist.present? %>
+    <h2><%= @vinyl.title %> (<%= @vinyl.year %>)</h2>
+    <% if @vinyl.artist.present? %>
       <h3 class="text-muted">
-        <%= link_to vinyl.artist.name, "/artists/#{vinyl.artist.id}" %></h3>
+        <%= link_to @vinyl.artist.name, "/artists/#{@vinyl.artist.id}" %></h3>
       <h5 class="text-muted">
-        <% if vinyl.runtime.present? %>
-          <%= "Runtime: #{vinyl.runtime} min" %>
+        <% if @vinyl.runtime.present? %>
+          <%= "Runtime: #{@vinyl.runtime} min" %>
         <% end %>
       </h5>
     </p>
@@ -63,9 +63,9 @@
 
   <div class="collapse multi-collapse" id="multiCollapseArtist">
     <div class="card card-body">
-      <% if vinyl.artist.present? %>
+      <% if @vinyl.artist.present? %>
         <ul>
-          <% vinyl.artist.vinyls.each do |vinyl| %>
+          <% @vinyl.artist.vinyls.each do |vinyl| %>
           <li><%= link_to vinyl.title, "/vinyls/#{vinyl.id}" %></li>
           <% end %>
         </ul>
@@ -82,7 +82,7 @@
 
       <ul>
         <% @collections.each do |collection| %>
-          <% if collection.vinyls.find_by(:id => vinyl.id) %>
+          <% if collection.vinyls.find_by(:id => @vinyl.id) %>
             <li><%= link_to collection.name, "/collections/#{collection.id}" %></li>
           <% end %>
         <% end %>

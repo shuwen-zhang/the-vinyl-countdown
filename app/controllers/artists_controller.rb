@@ -21,7 +21,17 @@ class ArtistsController < ApplicationController
   # def edit
   
 
-  # def show
+  def show
+
+    if not Artist.exists?(id: params["id"])
+      flash[:error] = "Artist does not exist"
+      redirect_to "/artists"
+    else
+      @artist = Artist.find_by(id: params["id"])
+    end
+
+  end
+
 
   def update
     @artist = Artist.find_by(id: params["id"])

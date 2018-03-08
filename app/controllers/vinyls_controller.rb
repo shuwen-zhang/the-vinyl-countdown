@@ -40,6 +40,13 @@ class VinylsController < ApplicationController
   
 
   def show
+    if not Vinyl.exists?(id: params["id"])
+      flash[:error] = "Vinyl does not exist"
+      redirect_to "/vinyls"
+    else
+      @vinyl = Vinyl.find_by(id: params["id"])
+    end
+
     if session[:user_id] != nil 
       user = User.find_by(:id => session[:user_id])
       @collections = user.collections.order('name')
@@ -99,9 +106,8 @@ class VinylsController < ApplicationController
   def remove
     @vinyl = Vinyl.find_by(id: params["vinyl_id"])
     @collection = Collection.find_by(id: params["collection_id"])
-
     @collection.vinyls.delete(@vinyl)
-    
+    flash[:success] = "Vinyl was successfully removed."
     redirect_to "/collections/#{@collection.id}"
   end
 
