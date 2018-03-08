@@ -1,6 +1,6 @@
 # README
 
-##[The Vinyl Countdown](https://the-vinyl-countdown.herokuapp.com)
+## [The Vinyl Countdown](https://the-vinyl-countdown.herokuapp.com)
 
 ### Purpose of the Web Application
 
