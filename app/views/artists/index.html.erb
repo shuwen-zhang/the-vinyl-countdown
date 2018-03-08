@@ -36,7 +36,7 @@
         </td>
 
         <td><ul>
-          <% artist.vinyls.order('year').each do |vinyl| %>
+          <% artist.vinyls.order('year').first(5).each do |vinyl| %>
             <li><i><%= vinyl.title %></i> 
               <% if vinyl.year.present? %>
                 (<%= vinyl.year %>)
