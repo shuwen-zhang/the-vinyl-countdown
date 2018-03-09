@@ -27,6 +27,6 @@ body {
 }
 
 img {
-	background-image: url(/assets/na.png);
+	background-image: url(na.png);
 	overflow: hidden;
 }
