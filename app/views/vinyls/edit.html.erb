@@ -16,7 +16,7 @@
       <p>Year: <input name="year" type="number" class="form-control" min="1800" max=<%= Date.today.year %> step="1" value="<%= vinyl.year %>"></p> 
       <p>Runtime (minutes): <input name="runtime" type="number" class="form-control" min="1" max="500" step="1" value="<%= vinyl.runtime %>"></p>
       <p>Album Art:
-        <input name="image_url" type="text" class="form-control" value="<%= vinyl.image_url %>"></p>
+        <input name="image_url" type="text" class="form-control" value="<%= vinyl.image_url %>" pattern="https?://.+\.(gif|jpg|jpeg|tiff|png)" title="Must be an image url and start with http:// or https://"></p>
 
       <p>Artist:<br>
         <!-- search form function, if not exist, add -->

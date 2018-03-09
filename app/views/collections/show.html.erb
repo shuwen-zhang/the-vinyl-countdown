@@ -21,14 +21,14 @@
 
       <div class="col-sm-3 my-3 text-center">
 
-        <% image_url = (vinyl.image_url.present? ? vinyl.image_url : 'na.png') %>
+        <% image_url = (vinyl.image_url.present? ? vinyl.image_url : '/assets/na.png') %>
 
       <div class="album_container">
       	<div class="overlay">
         	<div class="album_title"><%= vinyl.title %></div>
         </div>
        
-        <%= link_to image_tag(image_url, :class => "img-fluid circular_image"), "/vinyls/#{vinyl.id}" %>
+        <a href="/vinyls/<%= vinyl.id %>"><img src="<%= image_url %>" class="img-fluid circular_image"></a>
     	</div>
   		<br><p>
           <i><%= vinyl.title %></i> (<%= vinyl.year %>)<br>
