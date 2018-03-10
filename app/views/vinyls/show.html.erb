@@ -33,6 +33,40 @@
 </div>
 
 
+  <% if session[:user_id] != nil %>
+    <% @user = User.find_by(id: session[:user_id]) %>
+
+    <div class="row">
+      <div class="col-sm-4 offset-sm-3" style="padding:0">
+        <%= form_tag "/vinyls/add-to-collections" do %>  
+          <select name="collection_id" class="form-control" onchange="this.form.submit()">
+            <option value="" disabled selected>Add to Collection</option>
+            <% @user.collections.order('name').each do |collection|  %>
+              <option value="<%= collection.id %>">
+              <%= collection.name %>
+              </option>
+            <% end %>
+          </select>
+          <%= hidden_field_tag "vinyl_id", @vinyl.id %>
+        <% end %>
+      </div>
+
+      <div class="col-sm-1">
+        <div class="btn btn-outline-secondary btn-sm">
+        <%= link_to "Edit", "/vinyls/#{@vinyl.id}/edit" %>
+        </div>
+      </div>
+
+      <div class="col-sm-1" style="padding:0">
+        <div class="btn btn-outline-danger btn-sm">
+        <%= link_to "Delete", "/vinyls/#{@vinyl.id}", method: "delete", data: { confirm: "Are you sure? The vinyl will be deleted from all the collections that hold it." } %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+  <br>
 
 <!-- If logged in, display both recordings by artist, and collections containing the vinyl -->
 
