@@ -16,7 +16,7 @@
         <input name="year" type="number" class="form-control" min="1800" max=<%= Date.today.year %> step="1"
         required></p> <!-- validate that it's 4 digits between 1800 and current year -->
       <p>Runtime (minutes): <input name="runtime" type="number" class="form-control" min="1" max="500" step="1"></p>
-      <p>Album Art:
+      <p>Album Art (URL to image):
         <input name="image_url" type="url" class="form-control" pattern="https?://.+\.(gif|jpg|jpeg|tiff|png)" title="Must start with http:// or https:// and have type of gif, jpg, jpeg, png, or tiff"></p>
 
       <p>Artist: <span class="required">*</span> 
