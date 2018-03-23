@@ -8,14 +8,14 @@
 
 In the future, I hope to add a functionality for users to rate or add comments to the vinyl records in their collections.
 
-### Getting Started
+### Running the Website Locally
 
-1. Download a ZIP of this repository.  Unzip the contents.
+1. Download a ZIP of this repository and unzip the contents.
 2. In your Terminal or Command Prompt, `cd` to the application's root directory.
 3. `bundle install --without production`
 4. `rails db:migrate db:seed` 
 6. `rails server`.  Puma should start up on port 3000.
-7. Browse to `localhost:3000`.
+7. Go to `localhost:3000` in your browser.
 
 ### Models Used by the Web Application
 * User
